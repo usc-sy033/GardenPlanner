@@ -5,9 +5,7 @@ package garden_planner.model;
  *
  * @author Mark Utting
  */
-public class RectBed {
-	private double left = 0.0;
-	private double top = 0.0;
+public class RectBed extends GardenBed {
 	private double width = 1.0;
 	private double height = 1.0;
 
@@ -15,36 +13,11 @@ public class RectBed {
 	}
 
 	/**
-	 * Position of left edge of this shape.
-	 *
-	 * @return left edge, in metres
-	 */
-	public double getLeft() {
-		return left;
-	}
-
-	public void setLeft(double left) {
-		this.left = left;
-	}
-
-	/**
-	 * Position of top edge of this shape.
-	 *
-	 * @return top edge, in metres
-	 */
-	public double getTop() {
-		return top;
-	}
-
-	public void setTop(double top) {
-		this.top = top;
-	}
-
-	/**
 	 * Total width of this shape.
 	 *
 	 * @return width in metres.
 	 */
+	@Override
 	public double getWidth() {
 		return width;
 	}
@@ -58,6 +31,7 @@ public class RectBed {
 	 *
 	 * @return height in metres.
 	 */
+	@Override
 	public double getHeight() {
 		return height;
 	}
@@ -71,6 +45,7 @@ public class RectBed {
 	 *
 	 * @return the total internal area of the shape.
 	 */
+	@Override
 	public double getArea() {
 		return width * height;
 	}
@@ -80,6 +55,7 @@ public class RectBed {
 	 *
 	 * @return the total length of the edges of the shape.
 	 */
+	@Override
 	public double getPerimeter() {
 		return 2 * (width + height);
 	}

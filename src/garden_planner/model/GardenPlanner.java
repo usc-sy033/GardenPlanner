@@ -21,7 +21,7 @@ public class GardenPlanner {
     private double wallPrice;
 
     /** The collection of all the garden beds in the current design. */
-    private final ArrayList<RectBed> beds = new ArrayList<>();
+    private final ArrayList<GardenBed> beds = new ArrayList<>();
     private double totalWallLength;
     private double totalGardenArea;
 
@@ -83,7 +83,7 @@ public class GardenPlanner {
      *
      * @return a list of garden beds.
      */
-    public List<RectBed> getBeds() {
+    public List<GardenBed> getBeds() {
         return this.beds;
     }
 
@@ -173,7 +173,7 @@ public class GardenPlanner {
     public void recalculateTotals() {
         totalWallLength = 0.0;
         totalGardenArea = 0.0;
-        for (RectBed bed : this.beds) {
+        for (GardenBed bed : this.beds) {
             totalGardenArea += bed.getArea();
             totalWallLength += bed.getPerimeter();
         }

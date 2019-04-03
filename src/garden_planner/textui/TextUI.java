@@ -1,5 +1,6 @@
 package garden_planner.textui;
 
+import garden_planner.model.GardenBed;
 import garden_planner.model.GardenPlanner;
 import garden_planner.model.RectBed;
 
@@ -31,7 +32,7 @@ public class TextUI {
 		planner.recalculateTotals();
 		System.out.println(planner.GARDEN_PLANNER_VERSION);
 		System.out.println("Garden design is:");
-		for (RectBed bed : planner.getBeds()) {
+		for (GardenBed bed : planner.getBeds()) {
 			System.out.println("    " + bed);
 		}
 		System.out.printf("Total garden area is: %8.2f m2.\n", planner.getTotalGardenArea());
