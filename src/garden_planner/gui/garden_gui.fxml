@@ -1,8 +1,26 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="garden_planner.gui.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="garden_planner.gui.Controller">
+   <center>
+      <Pane fx:id="inner" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
+   </center>
+   <top>
+      <Label alignment="CENTER" style="-fx-background-color: gold;" text="Welcome to the Garden Planner" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <Label fx:id="messageLabel" text="Label" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <Button fx:id="button1" mnemonicParsing="false" onAction="#button1Handler" text="Button" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>
