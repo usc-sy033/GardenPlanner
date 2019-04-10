@@ -33,4 +33,9 @@ public class CircleBed extends GardenBed {
     public void setRadius(double r) {
         this.radius = r;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Circle %.2f %.2f %.2f", left, top, radius);
+    }
 }

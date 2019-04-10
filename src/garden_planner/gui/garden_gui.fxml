@@ -2,8 +2,10 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="garden_planner.gui.Controller">
@@ -23,4 +25,12 @@
    <left>
       <Button fx:id="button1" mnemonicParsing="false" onAction="#button1Handler" text="Button" BorderPane.alignment="CENTER" />
    </left>
+   <right>
+      <VBox fx:id="col" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="wallLength" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" />
+            <TextField fx:id="area" />
+            <TextField fx:id="cost" />
+         </children></VBox>
+   </right>
 </BorderPane>

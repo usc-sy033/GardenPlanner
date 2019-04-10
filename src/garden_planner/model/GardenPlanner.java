@@ -52,6 +52,7 @@ public class GardenPlanner {
         RectBed r1 = new RectBed();
         RectBed r2 = new RectBed();
         RectBed r3 = new RectBed();
+        CircleBed c1 = new CircleBed();
 
         r1.setWidth(1.0);
         r2.setWidth(2.0);
@@ -69,9 +70,14 @@ public class GardenPlanner {
         r2.setTop(1.0);
         r3.setTop(1.0);
 
+        c1.setTop(1.0);
+        c1.setLeft(1.0);
+        c1.setRadius(2.0);
+
         beds.add(r1);
         beds.add(r2);
         beds.add(r3);
+        beds.add(c1);
     }
 
     /**
