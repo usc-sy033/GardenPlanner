@@ -47,6 +47,7 @@ public class Controller {
             rect.setX(bed.getLeft() * 100);
             rect.setY(bed.getTop()*100);
             inner.getChildren().add(rect);
+            // TO-DO: set circle radius from the radius in the garden planner.
             CircleBed circ = new CircleBed();
             circ.getRadius();
             planner.recalculateTotals();
