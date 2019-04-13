@@ -22,6 +22,7 @@ public class Controller {
         planner = new GardenPlanner();
         planner.createBasicDesign();
     }
+
     @FXML
     private VBox col;
 
@@ -47,14 +48,19 @@ public class Controller {
             rect.setY(bed.getTop()*100);
             inner.getChildren().add(rect);
             CircleBed circ = new CircleBed();
-            circ.getRadius(bed);
+            circ.getRadius();
             planner.recalculateTotals();
-//            col.getChildren().add(new TextField("" + planner.getTotalWallLength()));
-
 
         }
-        wallLength.setText("Total wall length is 20.00 m" + planner.getTotalWallLength() + " Cost: " + planner.getWallPrice());
-        area.setText("" + planner.getTotalGardenArea() + " Cost: " + planner.getSoilPrice());
-        cost.setText("" + planner.getTotalCost());
+
+        // Change statistics fields to be non-editable
+        wallLength.setEditable(false);
+        area.setEditable(false);
+        cost.setEditable(false);
+
+        // Print the statistics fields to the VBox TextFields
+        wallLength.setText(String.format("Total wall length is: %8.2f m.\n", planner.getTotalWallLength(), "Cost: $", planner.getWallPrice()));
+        area.setText(String.format("Total garden area is: %8.2f m2.\n", planner.getTotalGardenArea()));
+        cost.setText(String.format("Total garden cost is: $%7.2f.\n", planner.getTotalCost()));
     }
 }
