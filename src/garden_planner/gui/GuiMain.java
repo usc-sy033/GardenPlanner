@@ -19,7 +19,8 @@ public class GuiMain extends Application {
        // Pane root = new VBox();
        // root.setStyle("-fx-background-color: #007700;");
        // root.getChildren().add(new Button("TODO: design garden planner GUI"));
-        primaryStage.setTitle("Hello World");
+
+        primaryStage.setTitle("Garden Planner GUI");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }

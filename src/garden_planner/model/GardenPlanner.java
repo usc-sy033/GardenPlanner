@@ -70,9 +70,9 @@ public class GardenPlanner {
         r2.setTop(1.0);
         r3.setTop(1.0);
 
-        c1.setTop(1.0);
-        c1.setLeft(1.0);
-        c1.setRadius(2.0);
+        c1.setLeft(4.0);
+        c1.setTop(4.0);
+        c1.setRadius(1.0);
 
         beds.add(r1);
         beds.add(r2);
@@ -168,8 +168,8 @@ public class GardenPlanner {
             } else if (words.length == 5 && words[0].toLowerCase().equals("circle")) {
                 CircleBed circ = new CircleBed();
                 circ.setLeft(Double.parseDouble(words[1]));
-                circ.setTop(Double.parseDouble(words[1]));
-                circ.setRadius(Double.parseDouble(words[1]) / 2.0);
+                circ.setTop(Double.parseDouble(words[2]));
+                circ.setRadius(Double.parseDouble(words[3]) / 2.0);
                 getBeds().add(circ);
             }  else {
                 throw new IllegalArgumentException("ERROR: illegal garden bed: " + line);

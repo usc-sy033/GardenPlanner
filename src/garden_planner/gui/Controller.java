@@ -40,18 +40,24 @@ public class Controller {
     public void button1Handler(ActionEvent event) {
         System.out.println("Clicked!");
         for (GardenBed bed : planner.getBeds()) {
-            System.out.println("found bed: " + bed);
-            Rectangle rect = new Rectangle();
-            rect.setWidth(bed.getWidth() * 100);
-            rect.setHeight(bed.getWidth() * 100);
-            rect.setX(bed.getLeft() * 100);
-            rect.setY(bed.getTop()*100);
-            inner.getChildren().add(rect);
-            // TO-DO: set circle radius from the radius in the garden planner.
-            CircleBed circ = new CircleBed();
-            circ.getRadius();
-            planner.recalculateTotals();
+            if (bed instanceof RectBed) {
+                System.out.println("found bed: " + bed);
+                Rectangle rect = new Rectangle();
+                rect.setWidth(bed.getWidth() * 100);
+                rect.setHeight(bed.getWidth() * 100);
+                rect.setX(bed.getLeft() * 100);
+                rect.setY(bed.getTop() * 100);
+                inner.getChildren().add(rect);
+            } else if (bed instanceof CircleBed) {
+                System.out.println("found bed: " + bed);
+                Circle circle = new Circle();
+                circle.setRadius(((CircleBed) bed).getRadius() * 100);
+                circle.setCenterX(bed.getLeft() * 100);
+                circle.setCenterY(bed.getTop() * 100);
+                inner.getChildren().add(circle);
+            }
 
+            planner.recalculateTotals();
         }
 
         // Change statistics fields to be non-editable
