@@ -29,31 +29,34 @@ public class Controller {
     @FXML
     private TextField wallLength;
     @FXML
+    private TextField wallCost;
+    @FXML
     private TextField area;
     @FXML
-    private TextField cost;
+    private TextField areaCost;
+    @FXML
+    private TextField totalCost;
 
     @FXML
     private Pane inner;
 
     @FXML
     public void button1Handler(ActionEvent event) {
-        System.out.println("Clicked!");
         for (GardenBed bed : planner.getBeds()) {
             if (bed instanceof RectBed) {
                 System.out.println("found bed: " + bed);
                 Rectangle rect = new Rectangle();
-                rect.setWidth(bed.getWidth() * 100);
-                rect.setHeight(bed.getWidth() * 100);
-                rect.setX(bed.getLeft() * 100);
-                rect.setY(bed.getTop() * 100);
+                rect.setWidth(bed.getWidth() * 50);
+                rect.setHeight(bed.getWidth() * 50);
+                rect.setX(bed.getLeft() * 50);
+                rect.setY(bed.getTop() * 50);
                 inner.getChildren().add(rect);
             } else if (bed instanceof CircleBed) {
                 System.out.println("found bed: " + bed);
                 Circle circle = new Circle();
-                circle.setRadius(((CircleBed) bed).getRadius() * 100);
-                circle.setCenterX(bed.getLeft() * 100);
-                circle.setCenterY(bed.getTop() * 100);
+                circle.setRadius(((CircleBed) bed).getRadius() * 50);
+                circle.setCenterX(bed.getLeft() * 50);
+                circle.setCenterY(bed.getTop() * 50);
                 inner.getChildren().add(circle);
             }
 
@@ -62,12 +65,18 @@ public class Controller {
 
         // Change statistics fields to be non-editable
         wallLength.setEditable(false);
+        wallCost.setEditable(false);
         area.setEditable(false);
-        cost.setEditable(false);
+        areaCost.setEditable(false);
+        totalCost.setEditable(false);
 
         // Print the statistics fields to the VBox TextFields
-        wallLength.setText(String.format("Total wall length is: %8.2f m.\n", planner.getTotalWallLength(), "Cost: $", planner.getWallPrice()));
-        area.setText(String.format("Total garden area is: %8.2f m2.\n", planner.getTotalGardenArea()));
-        cost.setText(String.format("Total garden cost is: $%7.2f.\n", planner.getTotalCost()));
+        wallLength.setText(String.format("Total wall length: %8.2f m.", planner.getTotalWallLength() ));
+        wallCost.setText(String.format("Cost: $ %8.2f", planner.getWallPrice()));
+
+        area.setText(String.format("Total garden area: %8.2f m2.", planner.getTotalGardenArea()));
+        areaCost.setText(String.format("Cost: $ %8.2f", planner.getSoilPrice()));
+
+        totalCost.setText(String.format("Total garden cost: $ %7.2f", planner.getTotalCost()));
     }
 }
