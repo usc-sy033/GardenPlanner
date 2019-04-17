@@ -72,7 +72,7 @@ public class Controller {
 
         // Print the statistics fields to the VBox TextFields
         wallLength.setText(String.format("Total wall length: %8.2f m.", planner.getTotalWallLength() ));
-        wallCost.setText(String.format("Cost: $ %8.2f", planner.getWallPrice()));
+        wallCost.setText("" + planner.getWallPrice());
 
         area.setText(String.format("Total garden area: %8.2f m2.", planner.getTotalGardenArea()));
         areaCost.setText(String.format("Cost: $ %8.2f", planner.getSoilPrice()));
