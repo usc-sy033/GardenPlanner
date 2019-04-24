@@ -22,8 +22,7 @@ public class Controller {
     private GardenPlanner planner;
     double originalMouseX;
     double originalMouseY;
-    double originalTranslateX;
-    double originalTranslateY;
+
 
     public static final double metre = 50;
 
@@ -73,12 +72,10 @@ public class Controller {
 
     //}
 
-    public void mousePressedHandler(MouseEvent mouseEvent){
-        originalMouseX = mouseEvent.getX();
-        originalMouseY = mouseEvent.getY();
-        //originalTranslateX = ((Rectangle)(mouseEvent.getSource())).getTranslateX();
-        //originalTranslateY = ((Rectangle)(mouseEvent.getSource())).getTranslateY();
-    }
+    //public void mousePressedHandler(MouseEvent mouseEvent){
+    //    originalMouseX = mouseEvent.getX();
+    //    originalMouseY = mouseEvent.getY();
+    //}
 
     //public void mouseDraggedHandler(double x, double y, GardenBed bed, Rectangle rect) {
     //    double offsetX = x - originalMouseX;
@@ -105,7 +102,7 @@ public class Controller {
                 rect.setY(bed.getTop() * 50);
                 inner.getChildren().add(rect);
                 rect.setOnMouseDragged(ev -> {
-                    // System.out.println("x=" + ev.getX() + " r=" + bed);
+                    System.out.println("x=" + ev.getX() + " r=" + bed);
                     rect.setX(ev.getX());
                     rect.setY(ev.getY());
                     bed.setLeft(ev.getX() / metre);
@@ -118,14 +115,17 @@ public class Controller {
             else if (bed instanceof CircleBed) {
                 System.out.println("found bed: " + bed);
                 Circle circle = new Circle();
-                circle.setRadius(((CircleBed) bed).getRadius() * 50);
+                circle.setRadius((((CircleBed) bed).getRadius() * 50));
                 circle.setCenterX(bed.getLeft() * 50);
                 circle.setCenterY(bed.getTop() * 50);
                 inner.getChildren().add(circle);
-                //circle.setOnMouseDragged(ev -> {
-                   // circle.setTranslateX(circle.getTranslateX() + ev.getX());
-                   // circle.setTranslateY(circle.getTranslateX() + ev.getY());
-               // });
+                circle.setOnMouseDragged(ev -> {
+                    System.out.println("x=" + ev.getX() + " r=" + bed);
+                    circle.setCenterX(ev.getX());
+                    circle.setCenterY(ev.getY());
+                    bed.setLeft(ev.getX() / metre);
+                    bed.setTop(ev.getY() / metre);
+               });
             }
 
 
