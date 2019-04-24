@@ -25,8 +25,11 @@ public class Controller {
     double originalTranslateX;
     double originalTranslateY;
 
+    public static final double metre = 50;
+
     public Controller() {
         planner = new GardenPlanner();
+
         planner.createBasicDesign();
     }
 
@@ -49,6 +52,7 @@ public class Controller {
 
     @FXML
     public void button1Handler(ActionEvent event) {
+
         refresh();
 
         // Change statistics fields to be non-editable
@@ -76,31 +80,40 @@ public class Controller {
         //originalTranslateY = ((Rectangle)(mouseEvent.getSource())).getTranslateY();
     }
 
-    public void mouseDraggedHandler(double x, double y, GardenBed bed, Rectangle rect) {
-        double offsetX = x - originalMouseX;
-        double offsetY = y - originalMouseY;
+    //public void mouseDraggedHandler(double x, double y, GardenBed bed, Rectangle rect) {
+    //    double offsetX = x - originalMouseX;
+    //    double offsetY = y - originalMouseY;
 
-        double newLeft = bed.getLeft() + offsetX / 50;
-        double newTop = bed.getTop() + offsetY / 50;
-        System.out.println(String.format("moving rect from %f,%f to %f,%f", bed.getLeft(), bed.getTop(), newLeft, newTop ));
-        bed.setLeft(newLeft);
-        bed.setTop(newTop);
-        rect.setX(newLeft);
-        rect.setY(newTop);
-    }
+    //    double newLeft = bed.getLeft() + offsetX / 50;
+    //    double newTop = bed.getTop() + offsetY / 50;
+     //   System.out.println(String.format("moving rect from %f,%f to %f,%f", bed.getLeft(), bed.getTop(), newLeft, newTop ));
+      //  bed.setLeft(newLeft);
+      //  bed.setTop(newTop);
+     //   rect.setX(newLeft);
+     //   rect.setY(newTop);
+   // }
 
     private void refresh() {
         for (GardenBed bed : planner.getBeds()) {
             if (bed instanceof RectBed) {
                 System.out.println("found bed: " + bed);
                 Rectangle rect = new Rectangle();
+
                 rect.setWidth(bed.getWidth() * 50);
                 rect.setHeight(bed.getHeight() * 50);
                 rect.setX(bed.getLeft() * 50);
                 rect.setY(bed.getTop() * 50);
                 inner.getChildren().add(rect);
-                rect.setOnMousePressed(this::mousePressedHandler);
-                rect.setOnMouseDragged(ev -> mouseDraggedHandler(ev.getX(), ev.getY(), bed, rect));
+                rect.setOnMouseDragged(ev -> {
+                    // System.out.println("x=" + ev.getX() + " r=" + bed);
+                    rect.setX(ev.getX());
+                    rect.setY(ev.getY());
+                    bed.setLeft(ev.getX() / metre);
+                    bed.setTop(ev.getY() / metre);
+                });
+
+                //rect.setOnMousePressed(this::mousePressedHandler);
+                //rect.setOnMouseDragged(ev -> mouseDraggedHandler(ev.getX(), ev.getY(), bed, rect));
             }
             else if (bed instanceof CircleBed) {
                 System.out.println("found bed: " + bed);
