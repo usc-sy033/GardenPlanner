@@ -24,7 +24,7 @@ public class Controller {
     double originalMouseY;
 
 
-    public static final double metre = 50;
+    private static final double metre = 50;
 
     public Controller() {
         planner = new GardenPlanner();
@@ -63,6 +63,30 @@ public class Controller {
         // Print the statistics fields to the VBox TextFields
 
     }
+    public void button2Handler(ActionEvent event) {
+        inner.getChildren().clear();
+        Rectangle rect = new Rectangle();
+        rect.getStyleClass().add("rectangle");
+        rect.setWidth(50);
+        rect.setHeight(50);
+        rect.setX(50);
+        rect.setY(50);
+        inner.getChildren().add(rect);
+
+
+    }
+    public void button3Handler(ActionEvent event) {
+        inner.getChildren().clear();
+        Circle circle = new Circle();
+        circle.getStyleClass().add("circle");
+        circle.setRadius(50);
+        circle.setCenterX(50);
+        circle.setCenterY(50);
+        inner.getChildren().add(circle);
+
+
+    }
+
 
 
     //public void dragHandler(ActionEvent event){

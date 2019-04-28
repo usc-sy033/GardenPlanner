@@ -48,8 +48,8 @@
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="button1" mnemonicParsing="false" onAction="#button1Handler" text="Button" />
-            <Button mnemonicParsing="false" text="Button" />
-            <Button mnemonicParsing="false" text="Button" />
+            <Button fx:id="button2" mnemonicParsing="false" onAction="#button2Handler" text="+Rect" />
+            <Button fx:id="button3" mnemonicParsing="false" onAction="#button3Handler" text="+Cirlce" />
          </children>
       </VBox>
    </left>
