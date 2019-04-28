@@ -23,9 +23,6 @@
    <bottom>
       <Label fx:id="messageLabel" text="Label" BorderPane.alignment="CENTER" />
    </bottom>
-   <left>
-      <Button fx:id="button1" mnemonicParsing="false" onAction="#button1Handler" text="Button" BorderPane.alignment="CENTER" />
-   </left>
    <right>
       <VBox fx:id="col" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -47,4 +44,13 @@
             </HBox>
          </children></VBox>
    </right>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="button1" mnemonicParsing="false" onAction="#button1Handler" text="Button" />
+            <Button mnemonicParsing="false" text="Button" />
+            <Button mnemonicParsing="false" text="Button" />
+         </children>
+      </VBox>
+   </left>
 </BorderPane>
