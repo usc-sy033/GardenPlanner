@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="garden_planner.gui.Controller">
+<BorderPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="garden_planner.gui.Controller">
    <center>
-      <Pane fx:id="inner" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
+      <Pane id="gardenPane" fx:id="inner" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
-      <Label alignment="CENTER" style="-fx-background-color: gold;" text="Welcome to the Garden Planner" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" text="Welcome to the Garden Planner" BorderPane.alignment="CENTER">
          <font>
             <Font size="12.0" />
          </font>

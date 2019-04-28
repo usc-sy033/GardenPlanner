@@ -28,7 +28,6 @@ public class Controller {
 
     public Controller() {
         planner = new GardenPlanner();
-
         planner.createBasicDesign();
     }
 
@@ -69,7 +68,6 @@ public class Controller {
     //public void dragHandler(ActionEvent event){
 
 
-
     //}
 
     //public void mousePressedHandler(MouseEvent mouseEvent){
@@ -83,19 +81,19 @@ public class Controller {
 
     //    double newLeft = bed.getLeft() + offsetX / 50;
     //    double newTop = bed.getTop() + offsetY / 50;
-     //   System.out.println(String.format("moving rect from %f,%f to %f,%f", bed.getLeft(), bed.getTop(), newLeft, newTop ));
-      //  bed.setLeft(newLeft);
-      //  bed.setTop(newTop);
-     //   rect.setX(newLeft);
-     //   rect.setY(newTop);
-   // }
+    //   System.out.println(String.format("moving rect from %f,%f to %f,%f", bed.getLeft(), bed.getTop(), newLeft, newTop ));
+    //  bed.setLeft(newLeft);
+    //  bed.setTop(newTop);
+    //   rect.setX(newLeft);
+    //   rect.setY(newTop);
+    // }
 
     private void refresh() {
         for (GardenBed bed : planner.getBeds()) {
             if (bed instanceof RectBed) {
                 System.out.println("found bed: " + bed);
                 Rectangle rect = new Rectangle();
-
+                rect.getStyleClass().add("rectangle");
                 rect.setWidth(bed.getWidth() * 50);
                 rect.setHeight(bed.getHeight() * 50);
                 rect.setX(bed.getLeft() * 50);
@@ -111,10 +109,10 @@ public class Controller {
 
                 //rect.setOnMousePressed(this::mousePressedHandler);
                 //rect.setOnMouseDragged(ev -> mouseDraggedHandler(ev.getX(), ev.getY(), bed, rect));
-            }
-            else if (bed instanceof CircleBed) {
+            } else if (bed instanceof CircleBed) {
                 System.out.println("found bed: " + bed);
                 Circle circle = new Circle();
+                circle.getStyleClass().add("circle");
                 circle.setRadius((((CircleBed) bed).getRadius() * 50));
                 circle.setCenterX(bed.getLeft() * 50);
                 circle.setCenterY(bed.getTop() * 50);
@@ -125,17 +123,13 @@ public class Controller {
                     circle.setCenterY(ev.getY());
                     bed.setLeft(ev.getX() / metre);
                     bed.setTop(ev.getY() / metre);
-               });
+                });
             }
 
-
             planner.recalculateTotals();
-
-
         }
 
-
-        wallLength.setText(String.format("Total wall length: %8.2f m.", planner.getTotalWallLength() ));
+        wallLength.setText(String.format("Total wall length: %8.2f m.", planner.getTotalWallLength()));
         wallCost.setText("" + planner.getWallPrice());
 
         area.setText(String.format("Total garden area: %8.2f m2.", planner.getTotalGardenArea()));

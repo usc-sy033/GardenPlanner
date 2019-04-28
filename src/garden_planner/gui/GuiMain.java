@@ -15,11 +15,6 @@ public class GuiMain extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("garden_gui.fxml"));
-
-       // Pane root = new VBox();
-       // root.setStyle("-fx-background-color: #007700;");
-       // root.getChildren().add(new Button("TODO: design garden planner GUI"));
-
         primaryStage.setTitle("Garden Planner GUI");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
