@@ -70,12 +70,6 @@ public class Controller {
        RectBed rect = new RectBed();
        planner.getBeds().add(rect);
 
-       // rect.setWidth(50);
-        //rect.setHeight(50);
-        //rect.setX(50);
-       // rect.setY(50);
-        //inner.getChildren().add(rect);
-
 
     }
    public void button3Handler(ActionEvent event) {}
