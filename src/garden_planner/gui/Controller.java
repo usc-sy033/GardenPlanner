@@ -70,19 +70,16 @@ public class Controller {
        RectBed rect = new RectBed();
        planner.getBeds().add(rect);
 
+       // rect.setWidth(50);
+        //rect.setHeight(50);
+        //rect.setX(50);
+       // rect.setY(50);
+        //inner.getChildren().add(rect);
+
 
     }
-   public void button3Handler(ActionEvent event) {}
-    //    inner.getChildren().clear();
-    //    Circle circle = new Circle();
-     //   circle.getStyleClass().add("circle");
-    //    circle.setRadius(50);
-     //   circle.setCenterX(50);
-     //   circle.setCenterY(50);
-     //   inner.getChildren().add(circle);
-
-
-    //}
+   public void button3Handler(ActionEvent event) {
+    }
 
 
 
