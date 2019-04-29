@@ -66,15 +66,11 @@ public class Controller {
    public void button2Handler(ActionEvent event) {
 
 
-       inner.getChildren().clear();
-       RectBed rect = new RectBed();
-       planner.getBeds().add(rect);
+      // inner.getChildren().clear();
+       //RectBed rect = new RectBed();
+       System.out.println("found bed: ");
 
-       // rect.setWidth(50);
-        //rect.setHeight(50);
-        //rect.setX(50);
-       // rect.setY(50);
-        //inner.getChildren().add(rect);
+       planner.updateGUI();
 
 
     }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 /**
  * A planning tool for costing gardens.
  *
@@ -205,5 +206,17 @@ public class GardenPlanner {
         // System.out.printf("Total garden area is %.2f m2 (%.2f m3 of soil), cost $%.2f.\n", totalGardenArea, soilVolume, soilCost);
         // System.out.printf("Total cost is: $%.2f\n", (wallCost + soilCost));
         return wallCost + soilCost;
+    }
+
+    public void updateGUI() {
+        beds.clear();
+        System.out.print("melong");
+        RectBed r1 = new RectBed();
+        r1.setWidth(1.0);
+        r1.setHeight(1.0);
+        r1.setLeft(1.0);
+        r1.setTop(1.0);
+        getBeds().add(r1);
+        beds.add(r1);
     }
 }
