@@ -63,29 +63,32 @@ public class Controller {
         // Print the statistics fields to the VBox TextFields
 
     }
-    public void button2Handler(ActionEvent event) {
-        inner.getChildren().clear();
-        Rectangle rect = new Rectangle();
-        rect.getStyleClass().add("rectangle");
-        rect.setWidth(50);
-        rect.setHeight(50);
-        rect.setX(50);
-        rect.setY(50);
-        inner.getChildren().add(rect);
+   public void button2Handler(ActionEvent event) {
+
+
+       inner.getChildren().clear();
+       RectBed rect = new RectBed();
+       planner.getBeds().add(rect);
+
+       // rect.setWidth(50);
+        //rect.setHeight(50);
+        //rect.setX(50);
+       // rect.setY(50);
+        //inner.getChildren().add(rect);
 
 
     }
-    public void button3Handler(ActionEvent event) {
-        inner.getChildren().clear();
-        Circle circle = new Circle();
-        circle.getStyleClass().add("circle");
-        circle.setRadius(50);
-        circle.setCenterX(50);
-        circle.setCenterY(50);
-        inner.getChildren().add(circle);
+   public void button3Handler(ActionEvent event) {}
+    //    inner.getChildren().clear();
+    //    Circle circle = new Circle();
+     //   circle.getStyleClass().add("circle");
+    //    circle.setRadius(50);
+     //   circle.setCenterX(50);
+     //   circle.setCenterY(50);
+     //   inner.getChildren().add(circle);
 
 
-    }
+    //}
 
 
 
@@ -118,10 +121,10 @@ public class Controller {
                 System.out.println("found bed: " + bed);
                 Rectangle rect = new Rectangle();
                 rect.getStyleClass().add("rectangle");
-                rect.setWidth(bed.getWidth() * 50);
-                rect.setHeight(bed.getHeight() * 50);
-                rect.setX(bed.getLeft() * 50);
-                rect.setY(bed.getTop() * 50);
+                rect.setWidth(bed.getWidth() * metre);
+                rect.setHeight(bed.getHeight() * metre);
+                rect.setX(bed.getLeft() * metre);
+                rect.setY(bed.getTop() * metre);
                 inner.getChildren().add(rect);
                 rect.setOnMouseDragged(ev -> {
                     System.out.println("x=" + ev.getX() + " r=" + bed);
