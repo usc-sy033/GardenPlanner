@@ -15,6 +15,7 @@
 }
 
 .rectangle {
+    -fx background-image: url("rect_bed.jpg");
     -fx-fill: #FAF3DD;
 }
 
