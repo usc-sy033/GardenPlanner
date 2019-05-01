@@ -210,13 +210,6 @@ public class GardenPlanner {
 
     public void updateGUI() {
         beds.clear();
-        System.out.print("melong");
-        RectBed r1 = new RectBed();
-        r1.setWidth(1.0);
-        r1.setHeight(1.0);
-        r1.setLeft(1.0);
-        r1.setTop(1.0);
-        getBeds().add(r1);
-        beds.add(r1);
+
     }
 }
