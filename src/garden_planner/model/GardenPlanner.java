@@ -210,6 +210,5 @@ public class GardenPlanner {
 
     public void updateGUI() {
         beds.clear();
-
     }
 }

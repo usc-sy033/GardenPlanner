@@ -1,22 +1,21 @@
 .root {
-    -fx-background-color: #8FC0A9;
+    -fx-background-color: #432818;
 }
 
 .label {
     -fx-font: 24px "Helvetica";
-    -fx-text-fill: #FAF3DD;
+    -fx-text-fill: #FFFFFF;
     -fx-text-alignment: center;
 }
 
 .button {
     -fx-font: 16px "Helvetica";
-    -fx-background-color: #FAF3DD;
+    -fx-background-color: #6EF9F5;
     -fx-padding: 5;
 }
 
 .rectangle {
-    -fx background-image: url("rect_bed.jpg");
-    -fx-fill: #FAF3DD;
+    -fx-background-image: url("https://images.pexels.com/photos/355748/pexels-photo-355748.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
 }
 
 .circle {
@@ -24,5 +23,7 @@
 }
 
 #gardenPane {
-    -fx-background-color: #4A7C59;
+    -fx-background-color: #399E5A;
+    -fx-border-style: solid;
+    -fx-border-width: 5px;
 }

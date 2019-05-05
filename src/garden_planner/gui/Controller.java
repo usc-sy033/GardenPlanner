@@ -4,224 +4,167 @@ import garden_planner.model.CircleBed;
 import garden_planner.model.GardenBed;
 import garden_planner.model.GardenPlanner;
 import garden_planner.model.RectBed;
-import garden_planner.textui.TextUI;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Point2D;
-import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class Controller {
+    private static final double METRE = 50;
+
     private GardenPlanner planner;
-    double originalMouseX;
-    double originalMouseY;
-    Rectangle selectedRectangle;
-    GardenBed selectedBed;
-    Circle selectedCircle;
 
+    private GardenBed selectedBed;
+    private Rectangle selectedRectangle;
+    private Circle selectedCircle;
 
-    private static final double metre = 50;
+    private ArrayList<GardenBed> drawnBeds = new ArrayList<>();
 
     public Controller() {
         planner = new GardenPlanner();
-        //planner.createBasicDesign();
     }
-
-    @FXML
-    private VBox col;
 
     @FXML
     private TextField wallLength;
     @FXML
-    private TextField wallCost;
+    private TextField totalWallLength;
     @FXML
     private TextField area;
     @FXML
-    private TextField areaCost;
+    private TextField totalArea;
     @FXML
     private TextField totalCost;
+    @FXML
+    private TextField totalCostDollars;
 
     @FXML
     private Pane inner;
 
-    @FXML
     public void button1Handler(ActionEvent event) {
+        refresh();
+    }
+
+    public void button2Handler(ActionEvent event) {
+        RectBed rect = new RectBed();
+
+        rect.setHeight(2.0);
+        rect.setWidth(2.0);
+        rect.setLeft(5);
+        rect.setTop(5);
+        planner.getBeds().add(rect);
 
         refresh();
-
-        // Change statistics fields to be non-editable
-        wallLength.setEditable(false);
-        wallCost.setEditable(false);
-        area.setEditable(false);
-        areaCost.setEditable(false);
-        totalCost.setEditable(false);
-
-        // Print the statistics fields to the VBox TextFields
-
+        drawnBeds.add(rect);
     }
-   public void button2Handler(ActionEvent event) {
 
+    public void button3Handler(ActionEvent event) {
+        CircleBed circle = new CircleBed();
 
-       RectBed rect = new RectBed();
-       System.out.println("found bed: ");
+        circle.setRadius(2);
+        circle.setLeft(5);
+        circle.setTop(5);
+        planner.getBeds().add(circle);
 
-       rect.setHeight(2.0);
-       rect.setWidth(2.0);
-       rect.setLeft(5);
-       rect.setTop(5);
-       planner.getBeds().add(rect);
-
-
-       refresh();
-    }
-   public void button3Handler(ActionEvent event) {
-
-       CircleBed circle = new CircleBed();
-
-       circle.setRadius(2);
-       circle.setLeft(5);
-       circle.setTop(5);
-       planner.getBeds().add(circle);
-
-
-       refresh();
+        refresh();
+        drawnBeds.add(circle);
     }
 
     public void button4Handler(ActionEvent event) {
-
-
-                    System.out.println("delete bed");
-                    if (selectedBed != null ) {
-                        if (selectedBed instanceof RectBed) {
-                            planner.getBeds().remove(selectedBed);
-                            inner.getChildren().remove(selectedRectangle);
-                        }
-                        if (selectedBed instanceof CircleBed) {
-                            planner.getBeds().remove(selectedBed);
-                            inner.getChildren().remove(selectedCircle);
-                        }
-                    }
-
-          // //
-           //         rect.setX(ev.getX());
-          //          rect.setY(ev.getY());
-          //          bed.setLeft(ev.getX() / metre);
-           //         bed.setTop(ev.getY() / metre);
-
-
-                }
-
-    //public void dragHandler(ActionEvent event){
-
-
-    //}
-
-    //public void mousePressedHandler(MouseEvent mouseEvent){
-    //    originalMouseX = mouseEvent.getX();
-    //    originalMouseY = mouseEvent.getY();
-    //}
-
-    //public void mouseDraggedHandler(double x, double y, GardenBed bed, Rectangle rect) {
-    //    double offsetX = x - originalMouseX;
-    //    double offsetY = y - originalMouseY;
-
-    //    double newLeft = bed.getLeft() + offsetX / 50;
-    //    double newTop = bed.getTop() + offsetY / 50;
-    //   System.out.println(String.format("moving rect from %f,%f to %f,%f", bed.getLeft(), bed.getTop(), newLeft, newTop ));
-    //  bed.setLeft(newLeft);
-    //  bed.setTop(newTop);
-    //   rect.setX(newLeft);
-    //   rect.setY(newTop);
-    // }
-
-
+        if (selectedBed != null) {
+            if (selectedBed instanceof RectBed) {
+                planner.getBeds().remove(selectedBed);
+                inner.getChildren().remove(selectedRectangle);
+            }
+            if (selectedBed instanceof CircleBed) {
+                planner.getBeds().remove(selectedBed);
+                inner.getChildren().remove(selectedCircle);
+            }
+        }
+        refresh();
+    }
 
     private void refresh() {
         for (GardenBed bed : planner.getBeds()) {
-            if (bed instanceof RectBed) {
-                System.out.println("found bed: " + bed);
+            if (bed instanceof RectBed && !drawnBeds.contains(bed)) {
                 Rectangle rect = new Rectangle();
                 rect.getStyleClass().add("rectangle");
-                rect.setWidth(bed.getWidth() * metre);
-                rect.setHeight(bed.getHeight() * metre);
-                rect.setX(bed.getLeft() * metre);
-                rect.setY(bed.getTop() * metre);
+                rect.setWidth(bed.getWidth() * METRE);
+                rect.setHeight(bed.getHeight() * METRE);
+                rect.setX(bed.getLeft() * METRE);
+                rect.setY(bed.getTop() * METRE);
                 inner.getChildren().add(rect);
+
                 rect.setOnMouseClicked(ev -> {
                     selectedRectangle = rect;
                     selectedBed = bed;
-
                 });
 
                 rect.setOnMouseDragged(ev -> {
-                    System.out.println("x=" + ev.getX() + " r=" + bed);
-                    if (ev.getX() > rect.getX() + rect.getWidth() / 2 && ev.getY() > rect.getY() + rect.getHeight() / 2){
+                    if (ev.getX() > rect.getX() + rect.getWidth() / 2 && ev.getY() > rect.getY() + rect.getHeight() / 2) {
                         rect.setWidth(ev.getX() - rect.getX());
                         rect.setHeight(ev.getY() - rect.getY());
-                    }
-                    else{
+                        ((RectBed) bed).setWidth(rect.getWidth() / METRE);
+                        ((RectBed) bed).setHeight(rect.getHeight() / METRE);
+                    } else {
                         rect.setX(ev.getX());
                         rect.setY(ev.getY());
-                        bed.setLeft(ev.getX() / metre);
-                        bed.setTop(ev.getY() / metre);
+                        bed.setLeft(ev.getX() / METRE);
+                        bed.setTop(ev.getY() / METRE);
                     }
-
-
                 });
 
-                //rect.setOnMousePressed(this::mousePressedHandler);
-                //rect.setOnMouseDragged(ev -> mouseDraggedHandler(ev.getX(), ev.getY(), bed, rect));
-            } else if (bed instanceof CircleBed) {
-                System.out.println("found bed: " + bed);
+            } else if (bed instanceof CircleBed && !drawnBeds.contains(bed)) {
                 Circle circle = new Circle();
                 circle.getStyleClass().add("circle");
-                circle.setRadius((((CircleBed) bed).getRadius() * 50));
-                circle.setCenterX(bed.getLeft() * 50);
-                circle.setCenterY(bed.getTop() * 50);
+                circle.setRadius((((CircleBed) bed).getRadius() * METRE));
+                circle.setCenterX(bed.getLeft() * METRE);
+                circle.setCenterY(bed.getTop() * METRE);
                 inner.getChildren().add(circle);
+
                 circle.setOnMouseClicked(ev -> {
                     selectedCircle = circle;
                     selectedBed = bed;
-
                 });
-                circle.setOnMouseDragged(ev -> {
 
-                    System.out.println("x=" + ev.getX() + " r=" + bed);
+                circle.setOnMouseDragged(ev -> {
                     if (ev.getX() > circle.getCenterX() + circle.getRadius() / 2 && ev.getY() > circle.getCenterY() + circle.getRadius() / 2) {
                         circle.setRadius(ev.getX() - circle.getCenterX());
                         circle.setRadius(ev.getY() - circle.getCenterY());
-                    }
-                    else{
+                        ((CircleBed) bed).setRadius(circle.getRadius() / METRE);
+                    } else {
                         circle.setCenterX(ev.getX());
                         circle.setCenterY(ev.getY());
-                        bed.setLeft(ev.getX() / metre);
-                        bed.setTop(ev.getY() / metre);
+                        bed.setLeft(ev.getX() / METRE);
+                        bed.setTop(ev.getY() / METRE);
                     }
-
                 });
             }
 
             planner.recalculateTotals();
         }
+
+        // Change statistics fields to be non-editable
+        wallLength.setEditable(false);
+        totalWallLength.setEditable(false);
+        area.setEditable(false);
+        totalArea.setEditable(false);
+        totalCost.setEditable(false);
+
         //Todo fix Values of statistics
-        wallLength.setText(String.format("Total wall length: %8.2f m.", planner.getTotalWallLength()));
-        wallCost.setText("" + planner.getWallPrice());
+        wallLength.setText("Wall cost:");
+        totalWallLength.setText("$" + Math.round(planner.getTotalWallLength() * planner.getWallPrice()));
 
-        area.setText(String.format("Total garden area: %8.2f m2.", planner.getTotalGardenArea()));
-        areaCost.setText(String.format("Cost: $ %8.2f", planner.getSoilPrice()));
+        area.setText("Total area:");
+        totalArea.setText("" + Math.round(planner.getTotalGardenArea()) + "m2");
 
-        totalCost.setText(String.format("Total garden cost: $ %7.2f", planner.getTotalCost()));
+        totalCost.setText("Total cost:");
+        totalCostDollars.setText("$" + Math.round(planner.getTotalCost()));
     }
 
 }
