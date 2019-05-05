@@ -13,6 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
+import org.w3c.dom.css.Rect;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -51,10 +53,12 @@ public class Controller {
     @FXML
     private Pane inner;
 
+    // Used to refresh the GUI after making changes to a garden bed
     public void button1Handler(ActionEvent event) {
         refresh();
     }
 
+    // Used to create a new rectangular garden bed
     public void button2Handler(ActionEvent event) {
         RectBed rect = new RectBed();
 
@@ -68,6 +72,7 @@ public class Controller {
         drawnBeds.add(rect);
     }
 
+    // Used to create a new circular garden bed
     public void button3Handler(ActionEvent event) {
         CircleBed circle = new CircleBed();
 
@@ -80,6 +85,7 @@ public class Controller {
         drawnBeds.add(circle);
     }
 
+    // Used to delete the selected garden bed
     public void button4Handler(ActionEvent event) {
         if (selectedBed != null) {
             if (selectedBed instanceof RectBed) {
@@ -91,23 +97,24 @@ public class Controller {
                 inner.getChildren().remove(selectedCircle);
             }
         }
+
         refresh();
     }
 
+    /**
+     * Loops through the array of GardenBed objects in GardenPlanner to refresh the GUI.
+     * Uses the drawnBeds array to ensure that beds that have already been drawn are not drawn again.
+     * Handles drawing of Rectangles and Circles on the GUI.
+     * Handles movement by clicking and dragging near the top left-hand corner of the shape.
+     * Handles resizing by clicking and dragging near the bottom right-hand corner of the shape.
+     * Recalculates totals after the loop in order to refresh the GardenPlanner statistics.
+     */
     private void refresh() {
         for (GardenBed bed : planner.getBeds()) {
             if (bed instanceof RectBed && !drawnBeds.contains(bed)) {
                 Rectangle rect = new Rectangle();
-
-                rect.getStyleClass().add("rectangle");
-                Image rectImg = new Image("garden_planner/gui/rectbed.png");
-                rect.setFill(new ImagePattern(rectImg));
-
-                rect.setWidth(bed.getWidth() * METRE);
-                rect.setHeight(bed.getHeight() * METRE);
-                rect.setX(bed.getLeft() * METRE);
-                rect.setY(bed.getTop() * METRE);
-                inner.getChildren().add(rect);
+                drawRectangle(bed, rect);
+                styleShape(rect);
 
                 rect.setOnMouseClicked(ev -> {
                     selectedRectangle = rect;
@@ -130,16 +137,8 @@ public class Controller {
 
             } else if (bed instanceof CircleBed && !drawnBeds.contains(bed)) {
                 Circle circle = new Circle();
-
-                circle.getStyleClass().add("rectangle");
-                Image rectImg = new Image("garden_planner/gui/circlebed.png");
-                circle.setFill(new ImagePattern(rectImg));
-
-                circle.getStyleClass().add("circle");
-                circle.setRadius((((CircleBed) bed).getRadius() * METRE));
-                circle.setCenterX(bed.getLeft() * METRE);
-                circle.setCenterY(bed.getTop() * METRE);
-                inner.getChildren().add(circle);
+                drawCircle(bed, circle);
+                styleShape(circle);
 
                 circle.setOnMouseClicked(ev -> {
                     selectedCircle = circle;
@@ -163,14 +162,15 @@ public class Controller {
             planner.recalculateTotals();
         }
 
-        // Change statistics fields to be non-editable
+        // Statistics to be displayed on the GUI.
         wallLength.setEditable(false);
         totalWallLength.setEditable(false);
+
         area.setEditable(false);
         totalArea.setEditable(false);
+
         totalCost.setEditable(false);
 
-        //Todo fix Values of statistics
         wallLength.setText("Wall cost:");
         totalWallLength.setText("$" + Math.round(planner.getTotalWallLength() * planner.getWallPrice()));
 
@@ -179,6 +179,49 @@ public class Controller {
 
         totalCost.setText("Total cost:");
         totalCostDollars.setText("$" + Math.round(planner.getTotalCost()));
+    }
+
+    /**
+     * Draws a Rectangle on the GUI to represent RectBeds in the GardenPlanner
+     *
+     * @param bed  the bed from the GardenPlanner to be drawn
+     * @param rect the Rectangle object to be drawn
+     */
+    private void drawRectangle(GardenBed bed, Rectangle rect) {
+        rect.setWidth(bed.getWidth() * METRE);
+        rect.setHeight(bed.getHeight() * METRE);
+        rect.setX(bed.getLeft() * METRE);
+        rect.setY(bed.getTop() * METRE);
+        inner.getChildren().add(rect);
+    }
+
+    /**
+     * Draws a Circle on the GUI to represent CircleBeds in the GardenPlanner
+     *
+     * @param bed    the bed from the GardenPlanner ot be drawn
+     * @param circle the Circle object to be drawn
+     */
+    private void drawCircle(GardenBed bed, Circle circle) {
+        circle.getStyleClass().add("circle");
+        circle.setRadius((((CircleBed) bed).getRadius() * METRE));
+        circle.setCenterX(bed.getLeft() * METRE);
+        circle.setCenterY(bed.getTop() * METRE);
+        inner.getChildren().add(circle);
+    }
+
+    /**
+     * Adds appropriate image to a Shape.
+     *
+     * @param shape The Shape object to be styled.
+     */
+    private void styleShape(Shape shape) {
+        if (shape instanceof Rectangle) {
+            Image rectImg = new Image("garden_planner/gui/rectbed.png");
+            shape.setFill(new ImagePattern(rectImg));
+        } else if (shape instanceof Circle) {
+            Image rectImg = new Image("garden_planner/gui/circlebed.png");
+            shape.setFill(new ImagePattern(rectImg));
+        }
     }
 
 }

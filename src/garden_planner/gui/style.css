@@ -15,14 +15,6 @@
     -fx-padding: 5;
 }
 
-.rectangle {
-    -fx-background-image: url('rectbed.png');
-}
-
-.circle {
-    -fx-background-image: url('circlebed.png');
-}
-
 #gardenPane {
     -fx-background-color: #A6C48A;
     -fx-border-style: solid;
