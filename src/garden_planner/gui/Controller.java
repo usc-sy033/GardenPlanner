@@ -51,6 +51,11 @@ public class Controller {
     private TextField totalCostDollars;
 
     @FXML
+    private TextField selectedBedField;
+    @FXML
+    private TextField selectedBedArea;
+    
+    @FXML
     private Pane inner;
 
     // Used to refresh the GUI after making changes to a garden bed
@@ -119,6 +124,8 @@ public class Controller {
                 rect.setOnMouseClicked(ev -> {
                     selectedRectangle = rect;
                     selectedBed = bed;
+                    selectedBedField.setText("Rectangle");
+                    selectedBedArea.setText("Area: " + Math.round(bed.getArea()) + "m2");
                 });
 
                 rect.setOnMouseDragged(ev -> {
@@ -143,6 +150,8 @@ public class Controller {
                 circle.setOnMouseClicked(ev -> {
                     selectedCircle = circle;
                     selectedBed = bed;
+                    selectedBedField.setText("Circle");
+                    selectedBedArea.setText("Area: " + Math.round(bed.getArea()) + "m2");
                 });
 
                 circle.setOnMouseDragged(ev -> {

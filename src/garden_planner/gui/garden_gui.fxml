@@ -41,6 +41,17 @@
                </children>
             </HBox>
             <Button fx:id="button1" mnemonicParsing="false" onAction="#button1Handler" text="Refresh" />
+            <Label text="Selected Bed" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="selectedBedField" />
+                        <TextField fx:id="selectedBedArea" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children></VBox>
    </right>
    <left>
