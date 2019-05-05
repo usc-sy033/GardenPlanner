@@ -1,29 +1,31 @@
 .root {
-    -fx-background-color: #432818;
+    -fx-background-color: #AA8155;
 }
 
 .label {
     -fx-font: 24px "Helvetica";
+    -fx-font-weight: bold;
     -fx-text-fill: #FFFFFF;
     -fx-text-alignment: center;
 }
 
 .button {
     -fx-font: 16px "Helvetica";
-    -fx-background-color: #6EF9F5;
+    -fx-background-color: #EFD6AE;
     -fx-padding: 5;
 }
 
 .rectangle {
-    -fx-background-image: url("https://images.pexels.com/photos/355748/pexels-photo-355748.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    -fx-background-image: url('rectbed.png');
 }
 
 .circle {
-    -fx-fill: #FAF3DD
+    -fx-background-image: url('circlebed.png');
 }
 
 #gardenPane {
-    -fx-background-color: #399E5A;
+    -fx-background-color: #A6C48A;
     -fx-border-style: solid;
     -fx-border-width: 5px;
+    -fx-border-color: #678D58;
 }

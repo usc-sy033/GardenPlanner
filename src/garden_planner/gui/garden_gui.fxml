@@ -47,7 +47,7 @@
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="button2" mnemonicParsing="false" onAction="#button2Handler" text="+Rect" />
-            <Button fx:id="button3" mnemonicParsing="false" onAction="#button3Handler" text="+Cirlce" />
+            <Button fx:id="button3" mnemonicParsing="false" onAction="#button3Handler" text="+Circle" />
             <Button fx:id="button4" mnemonicParsing="false" onAction="#button4Handler" text="Delete" />
          </children>
       </VBox>

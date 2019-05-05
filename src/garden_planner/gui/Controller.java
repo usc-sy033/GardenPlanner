@@ -7,11 +7,16 @@ import garden_planner.model.RectBed;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,7 +98,11 @@ public class Controller {
         for (GardenBed bed : planner.getBeds()) {
             if (bed instanceof RectBed && !drawnBeds.contains(bed)) {
                 Rectangle rect = new Rectangle();
+
                 rect.getStyleClass().add("rectangle");
+                Image rectImg = new Image("garden_planner/gui/rectbed.png");
+                rect.setFill(new ImagePattern(rectImg));
+
                 rect.setWidth(bed.getWidth() * METRE);
                 rect.setHeight(bed.getHeight() * METRE);
                 rect.setX(bed.getLeft() * METRE);
@@ -121,6 +130,11 @@ public class Controller {
 
             } else if (bed instanceof CircleBed && !drawnBeds.contains(bed)) {
                 Circle circle = new Circle();
+
+                circle.getStyleClass().add("rectangle");
+                Image rectImg = new Image("garden_planner/gui/circlebed.png");
+                circle.setFill(new ImagePattern(rectImg));
+
                 circle.getStyleClass().add("circle");
                 circle.setRadius((((CircleBed) bed).getRadius() * METRE));
                 circle.setCenterX(bed.getLeft() * METRE);
