@@ -207,7 +207,7 @@ public class Controller {
     /**
      * Draws a Circle on the GUI to represent CircleBeds in the GardenPlanner
      *
-     * @param bed    the bed from the GardenPlanner ot be drawn
+     * @param bed the bed from the GardenPlanner ot be drawn
      * @param circle the Circle object to be drawn
      */
     private void drawCircle(GardenBed bed, Circle circle) {
