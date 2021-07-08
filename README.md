@@ -1,2 +1,3 @@
 # ict221_garden_planner
-Initial code for ICT221 Garden Planner
+
+https://www.youtube.com/watch?v=FIzjaZbSMt0
